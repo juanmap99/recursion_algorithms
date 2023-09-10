@@ -1,0 +1,85 @@
+<div class="modal-container">
+    <div class="icon">
+        <fa-icon (click)="closeModal()" [icon]="closeButton"></fa-icon>
+    </div>
+
+    <div class="modal-content-wrapper" *ngIf="curModalTab == 0">
+        <div class="modall-content"
+             [style.height]="modalHeight-90 + 'px'"
+             [style.width]="modalWidth-40 + 'px'">
+            <h1>Solución sin programación dinámica</h1>
+            <p></p>
+            <div class="img-container">
+                <img src="assets/foto_sols/robber_nodp2.png" alt="Código solución">
+            </div>
+            <br/><br/>
+            <h1>Explicación código</h1>
+            <p>El procedimiento de resolución para este problema es el siguiente:</p>
+            <ul>
+                <li>
+                    Se establece una restricción de corte cuando el índice "index" es menor a 0. Esto se debe a que un índice igual a cero indicaría que no quedan más casas por recorrer en la cuadra.
+                </li>
+                <li>En cada paso, se consideran dos opciones:
+                    <ul>
+                        <li><u>Robar la casa:</u>En este caso, el beneficio máximo que se puede obtener es igual a la suma del dinero de la casa actual y el beneficio máximo obtenido saltando la casa siguiente (para evitar activar alarmas).</li>
+                        <li><u>No robar la casa:</u>En este caso, el beneficio máximo es igual al beneficio máximo obtenido en la casa siguiente, ya que se opta por no tomar el dinero de la casa actual para poder robar la siguiente sin restricciones.</li>
+                    </ul>
+                </li>
+                <li>Después de evaluar ambas opciones, se selecciona el máximo entre ellas para maximizar el dinero robado.</li>
+                <li>El index se inicializa para que apunte al último elemento del array de casas, comenzando el proceso desde el final.</li>
+            </ul>
+            <br/><br/>
+            <h1>Problema de la solución</h1>
+            <p>
+            <p>Cuando no se utiliza programación dinámica, el algoritmo no puede recordar si ya ha calculado previamente el beneficio máximo para un determinado índice. Esta limitación hace que la solución se vuelva ineficiente a medida que aumenta la cantidad de casas en la cuadra, ya que se realizan cálculos repetidos sin aprovechar los resultados ya obtenidos.
+            </p>
+            <p>Esta problemática puede ser facilmente visualizada al graficar un árbol de llamadas sobre un ejemplo concreto. Como se observa, para la mayoría de los index; especialmente aquellos más cercanos al cero; el beneficio máximo es calculado de manera reiterativa:
+            </p>
+            <div class="img-container">
+                <img src="assets/arbol_llamadas/robber_nodp.png" alt="Árbol llamadas">
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-content-wrapper" *ngIf="curModalTab == 1">
+        <div class="modall-content"
+        [style.height]="modalHeight-90 + 'px'"
+        [style.width]="modalWidth-40 + 'px'">
+            <h1>Solución con programación dinámica</h1>
+            <p></p>
+            <div class="img-container">
+                <img src="assets/foto_sols/robber_dp2.png" alt="Código solución">
+            </div>
+            <br/><br/>
+            <h1>Explicación código</h1>
+            <p>Como se observa, la lógica de resolución original se mantiene intacta, con la diferencia que:</p>
+                <ul>
+                    <li>
+                        Cuando se realiza el cálculo del beneficio máximo dado las dos posibles decisiones sobre el paso actual, se guarda dicho resultado en el memo utilizando el index como Key. 
+                    </li>
+                    <li>
+                        Cuando la función se invoca sobre un index en particular, el cálculo se realiza solo si el mismo no se encuentra en el memo; en caso caso contrario, se retorna el valor previamente calculado. 
+                    </li>
+                </ul>
+            <br/><br/>
+            <h1>Caso utilización DP</h1>
+            <p>
+            <p>Al aplicar programación dinámica, este problema ya no se encuentra presente, ya que el beneficio máximo, dado un index previamente calculado, se accede a través del memo. Utilizando el ejemplo previamente presentado, el árbol que se genera es el siguiente:
+            </p>
+            <div class="img-container">
+                <img src="assets/arbol_llamadas/robber_dp.png" alt="Árbol llamadas">
+            </div>
+        </div>
+    </div>
+
+    <div class="lower-modal-section">
+        <div class="hline-wrap">
+            <div class="hline"></div>
+        </div>
+        <div class="interaction-wrapper">
+            <a class="back-button"[style.visibility]="curModalTab == 0 ? 'hidden' : 'visible'"
+            (click)="goPreviousPage()">&laquo; Previous</a>
+            <a class="next-button"[style.visibility]="curModalTab == 1 ? 'hidden' : 'visible'" (click)="goNextPage()">Next &raquo;</a>       
+        </div>
+    </div>
+</div>

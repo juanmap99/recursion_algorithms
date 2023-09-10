@@ -1,0 +1,27 @@
+1$sdef$s $dtotalTargetSumHelper$d(nums,target,index,curr_sum,memo):
+2$b    $b$sif$s (index,curr_sum) $sin$s memo:
+3$b        $b$sreturn$s memo[(index,curr_sum)]
+4$b    $b$sif$s index < $u0$u $sand$s curr_sum == target:
+5$b        $b$sreturn$s $u1$u
+6$b    $b$sif$s index < $u0$u: 
+7$b        $b$sreturn$s $u0$u
+-$d $d
+8$b    $bsolsSumando = totalTargetSumHelper(nums,target,index-$u1$u,
+8$b                                    $bcurr_sum + nums[index],memo)
+9$b    $bsolsRestando = totalTargetSumHelper(nums,target,index-$u1$u,
+9$b                                    $bcurr_sum + -nums[index],memo)
+-$d $d
+10$b    $btotalSol = solsSumando + solsRestando
+11$b    $bmemo[(index,curr_sum)] = totalSol
+-$d $d
+12$b    $b$sreturn$s memo[(index,curr_sum)]
+-
+-$d $d
+-
+13$sdef$s $dtotalTargetSum$d(nums,target):
+14$b    $bmemo = {}
+15$b    $bindex = $flen$f(nums)-$u1$u
+16$b    $b$sreturn$s totalTargetSumHelper(nums,target,index,$u0$u,memo)
+-
+-$d $d
+-$d $d

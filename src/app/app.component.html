@@ -1,0 +1,77 @@
+<div class="modal-container" [style.width]="modalWidth+'px'" 
+[style.height]="modalHeight+'px'"
+[style.margin-top]="(scHeight -modalHeight)/2+'px'"
+[style.margin-bottom]="(scHeight -modalHeight)/2+'px'"
+[style.margin-left]="(scWidth -modalWidth)/2+'px'"
+[style.margin-right]="(scWidth -modalWidth)/2+'px'"
+[style.display]="openModal ? 'block' : 'none'"
+>
+<div #modalContainer></div>
+</div>
+<div class="modal-background" 
+[style.min-width]="'1270px'"
+[style.width]="scWidth+'px'" 
+[style.height]="getModalBackgroundHeight()+'px'"
+[style.display]="openModal ? 'block' : 'none'"
+(click)="closeModal()">
+</div>
+
+<div class="page-container" [style.min-width]="'1270px'" [style.height]="getModalBackgroundHeight()+'px'">
+
+  <div [style.width]="scWidth+'px'" class="toolbar modal-overlay">
+    <div class="alg-container">
+      <div [ngClass]="algoritmoElegido=='Fibonacci' ? 'tb-item-sel' : 'tb-item-def'"
+      (click)="setCurrentProblem('Fibonacci')">
+        <span>Fibonacci</span>
+      </div>
+      <div [ngClass]="algoritmoElegido=='TargetSum' ? 'tb-item-sel' : 'tb-item-def'"
+      (click)="setCurrentProblem('TargetSum')">
+        <span>Target Sum</span>
+      </div>
+      <div [ngClass]="algoritmoElegido=='CombSum' ? 'tb-item-sel' : 'tb-item-def'"
+      (click)="setCurrentProblem('CombSum')">
+        <span>Combination Sum</span>
+      </div>
+      <div [ngClass]="algoritmoElegido=='HouseRobber' ? 'tb-item-sel' : 'tb-item-def'"
+      (click)="setCurrentProblem('HouseRobber')">
+        <span>HouseRobber</span>
+      </div>
+      <div [ngClass]="algoritmoElegido=='UniquePaths' ? 'tb-item-sel' : 'tb-item-def'"
+      (click)="setCurrentProblem('UniquePaths')">
+        <span>UniquePaths</span>
+      </div>
+      <div [ngClass]="algoritmoElegido=='Teoria' ? 'tb-item-sel' : 'tb-item-def'" 
+            (click)="activateTeoriaMode()">
+            <span>Teoría</span>
+        </div>
+    </div>
+  </div>
+
+  <div class="body-container modal-overlay" 
+       *ngIf="!teoriaMode"
+       [style.width]="scWidth+'px'" 
+       [style.height]="getBodyHeight()+'px'">
+    <app-execution-body class="exec-container"
+                        [style.width]="execBodyDimension.width+'px'" 
+                        [style.height]="execBodyDimension.height+'px'"
+                        (paramsModalEvent)="openParamModal($event)"
+    ></app-execution-body>
+
+    <app-config-panel class="config-container"
+                      [style.width]="configDimension.width+'px'" 
+                      [style.height]="configDimension.height+'px'"
+                      (explEvent)="displayExplanationModal()"
+                      (enunciadoEvent)="displayEnunciadoEvent()"
+                      (execModeEvent)="changeExecMode($event)"
+                      (dpDesiredEvent)="setDPMode($event)"
+                      (runEvent)="runProgram($event)">
+    </app-config-panel>
+  </div>
+
+  <div class="body-container modal-overlay"
+      *ngIf="teoriaMode" 
+      [style.width]="scWidth+'px'" 
+      [style.height]="getBodyHeight()+'px'">
+    <app-teoria></app-teoria>
+  </div>
+</div>

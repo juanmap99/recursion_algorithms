@@ -1,0 +1,84 @@
+<div class="modal-container">
+    <div class="icon">
+        <fa-icon (click)="closeModal()" [icon]="closeButton"></fa-icon>
+    </div>
+
+    <div class="modal-content-wrapper" *ngIf="curModalTab == 0">
+        <div class="modall-content"
+             [style.height]="modalHeight-90 + 'px'"
+             [style.width]="modalWidth-40 + 'px'">
+            <h1>Solución sin programación dinámica</h1>
+            <p></p>
+            <div class="img-container">
+                <img src="assets/foto_sols/comb_nodp2.png" alt="Código solución">
+            </div>
+            <br/><br/>
+            <h1>Explicación código</h1>
+            <p>Como puede observarse, el procedimiento es el siguiente:</p>
+            <ul>
+                <li>
+                    La restricción de corte se establece cuando el target es 0 o menor a 0.
+                    <ul>
+                        <li><strong>Caso target == 0:</strong> Debido a que la target es restada por un elemento del array cuando es enviada recursivamente, que llegue a 0 implica que se encontró una secuencia de números que al sumarlos nos dan target. Debido a que ese es el caso, se retorna 1 implicando que una nueva solución única fue encontrada.</li>
+                        <li><strong>Caso target menor a 0:</strong> Por los mismos motivos explicados, en el caso que target sea menor a cero implica que se hizo un “Overshoot” de la suma; y, debido a que el array no cuenta con números negativos que permitan llegar a target, se retorna cero ya que por este camino no puede encontrarse solución.</li>
+                    </ul>
+                </li>
+                <li>
+                    Para calcular el número total de soluciones sobre cada llamada recursiva el primer paso consiste en inicializar una variable llamada totalSol.
+                </li>
+                <li>
+                    Luego, a través un ciclo for que atraviese todos los elementos del array , se suma a totalSol la cantidad de soluciones únicas que pueden conseguirse si se incluye en la suma el número actual siendo evaluado en el for.
+                </li>
+            </ul>
+            <br/><br/>
+            <h1>Problema de la solución</h1>
+            <p>
+            <p>Al no utilizar programación dinámica, el algoritmo no tiene manera de; dado un target; saber si analizó previamente la cantidad de combinaciones únicas posibles utilizando los elementos del array que llevan a dicho target dado este caso. Esta incapacidad del algoritmo de recordar cálculos previos es lo que genera que la solución se vuelva temporalmente inviable a medida que incrementa la longitud del array de elementos y el valor del target.
+            </p>
+            <p>Esta problemática puede ser facilmente visualizada al graficar el árbol de llamadas. Como puede observarse, en múltiples situaciones; como lo es el caso del dos, el uno y el cero; la cantidad de soluciones para una target ya encontrada vuelve a ser calculada debido a la ausencia de un mecanismo de memorización:
+            </p>
+            <div class="img-container">
+                <img src="assets/arbol_llamadas/comb_call_nodp.png" alt="Árbol llamadas">
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-content-wrapper" *ngIf="curModalTab == 1">
+        <div class="modall-content"
+        [style.height]="modalHeight-90 + 'px'"
+        [style.width]="modalWidth-40 + 'px'">
+            <h1>Solución con programación dinámica</h1>
+            <p></p>
+            <div class="img-container">
+                <img src="assets/foto_sols/comb_dp2.png" alt="Código solución">
+            </div>
+            <br/><br/>
+            <h1>Explicación código</h1>
+            <p>Como puede observarse, la lógica de resolución original se mantiene intacta, con la diferencia que:</p>
+            
+                <ul>
+                    <li>Cuando se realiza el cálculo del total de soluciones dado un target, se guarda dicho valor en el memo utilizando la target como Key. </li>
+                    <li>Dado una target, el cálculo del total de soluciones se realiza solo si la target a calcular no se encuentra en el memo; en caso contrario, se retorna el valor previamente encontrado. </li>
+                </ul>
+            <br/><br/>
+            <h1>Caso utilización DP</h1>
+            <p>
+            <p>Al implementar programación dinámica, puede verse como el número de llamadas es ampliamente disminuido debido a que la cantidad de soluciones para targets ya calculadas se encuentra en el memo. Utilizando el ejemplo previamente presentado, el árbol que se genera es el siguiente:
+            </p>
+            <div class="img-container">
+                <img src="assets/arbol_llamadas/comb_call_dp.png" alt="Árbol llamadas">
+            </div>
+        </div>
+    </div>
+
+    <div class="lower-modal-section">
+        <div class="hline-wrap">
+            <div class="hline"></div>
+        </div>
+        <div class="interaction-wrapper">
+            <a class="back-button"[style.visibility]="curModalTab == 0 ? 'hidden' : 'visible'"
+            (click)="goPreviousPage()">&laquo; Previous</a>
+            <a class="next-button"[style.visibility]="curModalTab == 1 ? 'hidden' : 'visible'" (click)="goNextPage()">Next &raquo;</a>       
+        </div>
+    </div>
+</div>

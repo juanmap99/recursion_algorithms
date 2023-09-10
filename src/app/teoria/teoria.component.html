@@ -1,0 +1,140 @@
+<body>
+    <div class="content">
+        <div class="flex-wrap">
+            <div class="sec-titulo">
+                <h1 >Teoría : Recursividad y programación dinámica</h1>
+            </div>
+            
+            <div class="subtitulo">
+                <h2>Introducción</h2>
+            </div>
+            <p>La recursividad se define como un proceso mediante el cual una función se llama a sí misma repetidamente hasta que se satisface una condición predefinida. Esta condición, comúnmente conocida como "restricción de corte", es esencial para evitar el desbordamiento de la "Call stack", lo que podría resultar en la famosa excepción <strong>Stack Overflow Exception</strong>.
+            </p>
+            <p>
+                A pesar de que la recursividad simplifica considerablemente la cantidad de código necesario para resolver problemas de naturaleza recursiva, es fundamental comprender que toda solución recursiva puede ser traducida en una versión iterativa. Esto se hace generalmente para evitar posibles consecuencias negativas en la "Call stack" y, por lo tanto, en el rendimiento del programa.
+            </p>
+
+            <p>La programación dinámica, en contraste, se fundamenta en el principio de optimización de Bellman y se orienta a alcanzar la solución óptima para un problema inicial mediante el cálculo y la combinación de sus subproblemas asociados.
+            </p>
+            <p>
+                En la práctica, la programación dinámica implica la subdivisión del problema inicial en subproblemas más pequeños, seguido del almacenamiento de las soluciones de estos subproblemas en una estructura de datos, típicamente una tabla que puede ser implementada como estructuras "clave-valor" o listas. Este enfoque evita la necesidad de recalcular soluciones en instancias posteriores.
+            </p>
+            <p>
+                La aplicación de programación dinámica se torna de vital importancia en problemas caracterizados por su naturaleza recursiva, que se pueden descomponer en subproblemas resolubles. Esto se debe a que el tiempo de cómputo requerido para calcular ciertos subproblemas puede aumentar significativamente, y la falta de persistencia de resultados puede hacer que el algoritmo sea inviable temporalmente cuando se enfrenta a entradas de gran tamaño.
+            </p>
+
+            <p>En función de entender tanto la programación recursiva como la aplicación de programación dinámica, esta 
+                herramienta introduce, explica, resuelve y permite tanto ejecutar como analizar a tiempo real un total de cinco 
+                problemas tomados de <a href="https://leetcode.com/">LeetCode</a>. Los mismos son:
+            </p>
+            <ul>
+                <li>Fibonacci.</li>
+                <li>Target Sum.</li>
+                <li>Combination Sum.</li>
+                <li>House Robber.</li>
+                <li>Unique Paths.</li>
+            </ul>
+
+            <div class="subtitulo">
+                <h2>Call stack</h2>
+            </div>
+            <p>La "Call Stack" o pila de llamadas es una estructura de datos que, como su nombre indica, opera como una pila. Su función principal radica en almacenar información sobre las funciones activas, es decir, aquellas que aún no han completado su ejecución. Esto se hace con el propósito de mantener un registro de hacia dónde debe retornar el control del flujo del programa una vez que finalice la ejecución de una subrutina.
+            </p>
+
+            <p>
+                La razón por la cual la recursión puede tener un impacto negativo en la "Call Stack" se debe a que, en el proceso recursivo, la función se llama a sí misma antes de que termine su ejecución actual. Como resultado, la pila debe retener información relacionada con cada llamada recursiva, como parámetros, variables locales y la dirección de retorno. Con cada nueva llamada recursiva, esta información se agrega a la pila, lo que genera un aumento exponencial en la cantidad de subproblemas pendientes. Eventualmente, este crecimiento desmedido puede llevar a que la "Call Stack" se quede sin espacio, lo que provoca la aparición de la conocida "Stack Overflow Exception".
+            </p>
+
+            <div class="subtitulo">
+                <h2>Pasos de programación dinámica</h2>
+            </div>
+            <p>
+                Si bien cada problema tiene sus particularidades y requiere soluciones adaptadas a sus objetivos específicos, existe una estrategia general común que puede servir como referencia y punto de partida en el proceso de diseño de una solución. Estos pasos incluyen:
+            </p>
+            <ol>
+                <li>
+                    <u>Análisis de Naturaleza Recursiva:</u> En primer lugar, se debe determinar si el problema en cuestión tiene una naturaleza recursiva. Esto implica identificar si se puede dividir en subproblemas más pequeños que se resuelven de manera similar al problema original.
+                </li>
+                <li>
+                    <u>Descomposición del Problema:</u> Una vez identificados los subproblemas, es fundamental dividir el problema principal en estos subproblemas. La forma en que se resuelven estos subproblemas debe ser idéntica o al menos similar a la del problema original.
+                </li>
+                <li>
+                    <u>Combinación de Resultados:</u> En muchos casos, los subproblemas retornarán resultados. Es necesario determinar cómo combinar estos resultados para obtener una solución al problema principal. Esta combinación puede implicar operaciones matemáticas, como sumas o productos, o lógicas, dependiendo de la naturaleza del problema.
+                </li>
+                <li>
+                    <u>Restricción de Corte:</u> Para evitar bucles infinitos y desbordamientos de la pila de llamadas, se debe establecer una restricción de corte. Esto significa identificar subproblemas base a los cuales siempre se llega y para los cuales se conoce la respuesta. Cuando se alcanza uno de estos subproblemas base, se detiene la recursión.
+                </li>
+                <li>
+                    <u>Almacenamiento de Resultados:</u> En casos en los que los subproblemas devuelven resultados, es importante encontrar una manera eficiente de almacenar estos resultados en una estructura de datos. Esto evita recalcular los mismos subproblemas y reduce la complejidad temporal del algoritmo, permitiendo que maneje entradas de mayor tamaño.
+                </li>
+            </ol>
+            <p>
+                Nótese como dicha estrategia se lleva a la práctica en el contexto del cálculo de Fibonacci de un numero:
+            </p>
+            <div class="centerflex">
+                <img class="centerimg" src="assets/fibTeoria.png" alt="Foto resolución Fibonacci" width="720" height="470"> 
+            </div>
+            <br>
+            <ol>
+                <li>El problema tiene una naturaleza recursiva, ya que para calcular el número Fibonacci actual, se necesitan los números Fibonacci anteriores.
+                </li>
+                <li>
+                    La descomposición del problema es sencilla, ya que el enunciado establece claramente el patrón a seguir: el número Fibonacci actual se calcula sumando los dos números Fibonacci anteriores.
+                </li>
+                <li>
+                    La combinación de resultados implica la suma de los resultados de los dos subproblemas (Fibonacci actual menos uno y Fibonacci actual menos dos) para obtener el valor deseado.
+                </li>
+                <li>
+                    La restricción de corte se encuentra implícita en los casos base definidos en el enunciado. Se sabe que, sin importar qué número Fibonacci se desee calcular, eventualmente se llegará a los casos base (Fibonacci de cero y uno), cuyos valores ya se conocen.
+                </li>
+                <li>
+                    En este ejemplo, se eligió un diccionario como estructura de datos para almacenar los resultados de los números Fibonacci previamente calculados. Esto aprovecha el acceso de tiempo constante (O(1)) que ofrece esta estructura de datos.
+                </li>
+            </ol>
+            <div class="subtitulo">
+                <h2>Memorización(Top-down aprroach)</h2>
+            </div>
+            <p>
+                La memorización implica el almacenamiento de los resultados de subproblemas calculados a medida que una función se llama de manera recursiva. Este enfoque comienza resolviendo el problema inicial y se desplaza hacia los casos base a través de llamadas recursivas. Este proceso se denomina "arriba hacia abajo" o "Top-down approach".
+            </p>
+            <p>
+                Las ventajas clave de la memorización incluyen la simplicidad y expresividad de las soluciones. Sin embargo, si bien se ahorra un gran número de llamadas, su principal desventaja radica en el impacto negativo que puede tener en la pila de llamadas del sistema (call stack) debido al uso de la recursividad.
+            </p>
+            <div class="subtitulo">
+                <h2>Tabulación(Bottom-up approach)</h2>
+            </div>
+            <p>
+                La tabulación es una estrategia de programación dinámica que sigue un enfoque "de abajo hacia arriba" o "Bottom-up". En lugar de utilizar recursión, la tabulación comienza calculando los casos base y luego progresa gradualmente hacia el problema principal. Esto se hace de manera iterativa, lo que brinda un alto nivel de eficiencia y elimina el riesgo de desbordamiento de la pila de llamadas.
+            </p>
+
+            <p>
+                Aunque la tabulación es más eficiente y evita problemas de desbordamiento de la pila, suele resultar más compleja y menos expresiva en términos de la solución del problema en comparación con el enfoque de memorización.
+            </p>
+
+            <div class="subtitulo">
+                <h2>Árbol de llamadas</h2>
+            </div>
+            <p>
+                En los casos en los que se utiliza el enfoque "Top-down" o de memorización, se genera un árbol de llamadas que representa todas las llamadas realizadas por la función en cada instancia. Este árbol ilustra de manera visual la cantidad de llamadas necesarias en la función.
+            </p>
+            <p>
+                Si bien la herramienta proporciona numerosas funcionalidades para analizar y comparar la eficiencia temporal de las soluciones que utilizan programación dinámica en comparación con las que no lo hacen, el árbol de llamadas es una herramienta visualmente sencilla para destacar la diferencia en la cantidad de llamadas requeridas para el cálculo de valores, como se muestra en el ejemplo del cálculo del número Fibonacci de 5.
+            </p>
+            <div class="centerflex">
+                <img class="centerimg" src="assets/arbol_llamadas/fib_call_nodp.png" alt="Foto resolución Fibonacci" width="510" height="360">
+                <img class="centerimg" [style.margin-left]="'25px'" src="assets/arbol_llamadas/fib_call_dp.png" alt="Foto resolución Fibonacci" width="510" height="360">  
+            </div>
+            <p>
+
+            </p>
+            <p>
+
+            </p>
+            <!--
+            <div class="centerflex">
+                <img class="centerimg" src="assets/arbol_llamadas/fib_call_dp.png" alt="Foto resolución Fibonacci" width="720" height="470"> 
+            </div>
+            -->
+        </div>
+    </div>
+</body>

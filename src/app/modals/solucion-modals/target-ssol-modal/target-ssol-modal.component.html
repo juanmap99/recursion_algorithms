@@ -1,0 +1,83 @@
+<div class="modal-container">
+    <div class="icon">
+        <fa-icon (click)="closeModal()" [icon]="closeButton"></fa-icon>
+    </div>
+
+    <div class="modal-content-wrapper" *ngIf="curModalTab == 0">
+        <div class="modall-content"
+             [style.height]="modalHeight-90 + 'px'"
+             [style.width]="modalWidth-40 + 'px'">
+            <h1>Solución sin programación dinámica</h1>
+            <p></p>
+            <div class="img-container">
+                <img src="assets/foto_sols/tSum_nodp2.png" alt="Código solución">
+            </div>
+            <br/><br/>
+            <h1>Explicación código</h1>
+            <p>Como puede observarse, el procedimiento es el siguiente:</p>
+            <ul>
+                <li>
+                    La restricción de corte se establece cuando se termina de recorrer el array, es decir, cuando el index es menor a 0. En ese caso, si el target es igual a curr_sum, implica que se encontró una expresión que lleva a target y se retorna uno; de lo contrario, se retorna cero.
+                </li>
+                <li>
+                    Si el index no es cero, se prueba la cantidad de soluciones que pueden generarse para llegar a target. Dicha cantidad se representa sumando las soluciones que pueden generarse al agregar el número en el índice actual a la expresión como una suma, y la cantidad de soluciones que pueden generarse al agregar el número en el índice actual a la expresión como una resta.
+                </li>
+                <li>Es importante destacar que la función se llama inicialmente de manera que el índice apunte al último elemento del array y curr_sum sea cero.</li>
+            </ul>
+            <br/><br/>
+            <h1>Problema de la solución</h1>
+            <p>
+            <p>Al no utilizar programación dinámica, el algoritmo no tiene forma de recordar si ya ha calculado la cantidad de expresiones posibles que llevan a target para un determinado curr_sum y un index específico. Esta falta de capacidad del algoritmo para recordar cálculos previos es lo que hace que la solución sea ineficiente a medida que aumenta la longitud del array de elementos.
+            </p>
+            <p>Esta problemática puede ser facilmente visualizada al graficar un árbol que represente 
+                las llamadas recursivas realizadas a la función en el contexto de un ejemplo en específico. Como puede observarse, en muchas situaciones se recalculan soluciones previamente calculadas. Un ejemplo de esto es cuando el index es igual a dos y el curr_sum es igual a cero, lo que puede ser visualizado en la capa dos del árbol de llamadas:
+            </p>
+            <div class="img-container">
+                <img src="assets/arbol_llamadas/tSum_call_nodp.png" alt="Árbol llamadas">
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-content-wrapper" *ngIf="curModalTab == 1">
+        <div class="modall-content"
+        [style.height]="modalHeight-90 + 'px'"
+        [style.width]="modalWidth-40 + 'px'">
+            <h1>Solución con programación dinámica</h1>
+            <p></p>
+            <div class="img-container">
+                <img src="assets/foto_sols/tSum_dp2.png" alt="Código solución">
+            </div>
+            <br/><br/>
+            <h1>Explicación código</h1>
+            <p>Como se observa, la lógica de resolución original se mantiene intacta, con la diferencia que:</p>
+            <p>
+                <ul>
+                    <li>
+                        Cuando se realiza el cálculo, se guarda la cantidad de soluciones encontradas en una variable de tipo diccionario para el index y curr_sum actual. 
+                    </li>
+                    <li>
+                        Dado un index y un curr_sum, el cálculo de soluciones posibles se realiza solo si la combinación de los mismos no se encuentra en el memo; en caso caso contrario, se retorna el valor previamente encontrado. 
+                    </li>
+                </ul>
+            <br/><br/>
+            <h1>Caso utilización DP</h1>
+            <p>
+            <p>Al implementar programación dinámica sobre el ejemplo presentado previamente, puede observarse a través del gráfico cómo muchos de los caminos que se recalculaban ahora pasan a ser tomados del memo, optimizando de esta manera el algoritmo en términos temporales.
+            </p>
+            <div class="img-container">
+                <img src="assets/arbol_llamadas/tSum_call_dp.png" alt="Árbol llamadas">
+            </div>
+        </div>
+    </div>
+
+    <div class="lower-modal-section">
+        <div class="hline-wrap">
+            <div class="hline"></div>
+        </div>
+        <div class="interaction-wrapper">
+            <a class="back-button"[style.visibility]="curModalTab == 0 ? 'hidden' : 'visible'"
+            (click)="goPreviousPage()">&laquo; Previous</a>
+            <a class="next-button"[style.visibility]="curModalTab == 1 ? 'hidden' : 'visible'" (click)="goNextPage()">Next &raquo;</a>       
+        </div>
+    </div>
+</div>
