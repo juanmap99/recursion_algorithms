@@ -1,25 +1,30 @@
 # Manual de usuario
-Esta herramienta permite entender de manera visual, textual y experimental la manera que funciona la recursividad y programación dinámica a través de una serie de problemas con sus respectivas soluciones.
+Esta herramienta está diseñada para facilitar la comprensión visual, textual y práctica de conceptos avanzados como la recursividad y la programación dinámica a través de la resolución de diversos problemas seleccionados cuidadosamente.
 
-Los problemas fueron elegidos de manera que cada uno presente un desafío diferente al resto. Aunque todos tienen una naturaleza recursiva que puede dividirse en subproblemas, la estrategia de resolución de cada uno tiene sus propias peculiaridades que lo distinguen de los demás y lo hacen especialmente desafiante. La mayoría de estos problemas se tomaron de LeetCode.
+Cada problema aborda un desafío único, destacando diferentes estrategias y peculiaridades en su solución. La mayoría de los problemas fueron tomados de LeetCode, garantizando su relevancia y nivel adecuado de dificultad.
 
-Los detalles de cada problema se abordan en sus respectivas secciones, pero el motivo de elección de cada uno de ellos es el siguiente:
-- **Fibonacci:** Se eligió debido a su simplicidad, ya que a menudo es el primer problema utilizado para introducir el concepto de programación dinámica.
-- **Target Sum:** El motivo principal para seleccionarlo es que, a diferencia de Fibonacci, es necesario aplicar memorización usando una estructura de datos de tipo diccionario, donde se deben usar dos variables para formar la clave (Key).
-- **Combination Sum:**  La motivación para elegir este problema es que requiere un bucle sobre cada llamada recursiva para explorar todas las posibles opciones de combinación.
-- **House Robber:** Se eligió este problema porque, a diferencia de los problemas anteriores donde los resultados de los subproblemas se usaban de manera aditiva, aquí se necesita analizar todas las opciones posibles para maximizar las ganancias.
-- **Unique Paths:** La razón principal para elegir este problema es que, a diferencia de los anteriores, el proceso recursivo implica recorrer una matriz.
+## Problemas Implementados
+Los problemas incluidos y las razones de su selección son las siguientes:
+- **Fibonacci:** Elegido por su simplicidad, ideal para introducir el concepto de programación dinámica.
+- **Target Sum:** : Destacado por requerir una estructura de memorización usando un diccionario con claves compuestas por dos variables.
+- **Combination Sum:**  Presenta la necesidad de utilizar un bucle dentro de cada llamada recursiva para explorar todas las posibles combinaciones.
+- **House Robber:** Ilustra cómo evaluar múltiples opciones para maximizar un beneficio, diferenciándose de problemas donde los resultados de subproblemas se suman directamente.
+- **Unique Paths:** Introduce un proceso recursivo que involucra la navegación a través de una matriz, ofreciendo una perspectiva diferente sobre la recursión y la programación dinámica.
 
 ## Modo de ejecución
-  La herramienta proporciona a los usuarios dos modos de ejecución distintos:
-- **Modo de ejecución manual:** En este modo, el usuario tiene el control total sobre la ejecución del algoritmo. El mismo puede avanzar paso a paso a través del algoritmo presionando un botón para cada paso, lo que le brinda la posibilidad de analizar detalladamente cada cambio y comprender cómo se desarrolla el proceso de ordenamiento. El hecho de que el progreso del proceso de ordenamiento se encuentre bajo el control del usuario lo transforma en el método idóneo a utilizar a la hora de buscar explicarlo en el contexto de una clase.
-- **Modo de ejecución automático:** En este modo, el algoritmo se ejecuta de manera automática sin la intervención del usuario. Una vez que el usuario selecciona este modo y ajusta la velocidad deseada, la herramienta inicia el proceso de ordenamiento de forma continua hasta el final.
+La herramienta ofrece dos modos de ejecución adaptados a diferentes necesidades de aprendizaje:
 
-## Parámetros modificables
+### 1. Modo Manual
+Permite al usuario avanzar paso a paso presionando un botón para cada iteración del algoritmo. Este enfoque facilita un análisis detallado de cada cambio, ideal para entornos educativos o para aquellos que deseen comprender profundamente cada etapa del proceso.
 
-Los parámetros modificables base comunes a todos los problemas son:
-- **Activar memorización:** Como su nombre lo indica, activa la solución que utiliza programación dinámica para resolver el problema.
-- **Velocidad:** Este parámetro determina el tiempo de retraso entre cada paso del algoritmo durante la ejecución automática. A medida que se incrementa la velocidad, disminuye el retraso entre cada paso del algoritmo. Se cuentan con diez velocidades, en donde el retraso asociado a cada una de ellas es el siguiente:
+### 2. Modo Automático
+El algoritmo se ejecuta de manera continua sin intervención del usuario. Antes de comenzar, el usuario puede ajustar la velocidad de ejecución según sus preferencias.
+
+## Parámetros Modificables
+
+### Parámetros Comunes
+- **Activar memorización:** Permite activar la versión del algoritmo que utiliza programación dinámica para optimizar la solución.
+- **Velocidad:** Controla el retraso entre los pasos en el modo automático. Hay diez niveles de velocidad:
   - Velocidad 1: 1000 ms
   - Velocidad 2: 500 ms
   - Velocidad 3: 250 ms
@@ -31,7 +36,8 @@ Los parámetros modificables base comunes a todos los problemas son:
   - Velocidad 9: 2 ms
   - Velocidad 10: 0.6 ms
 
-En cuanto a los parámetros específicos a cada uno de los problemas, los mismos son:
+### Parámetros Específicos por Problema
+Cada problema tiene configuraciones únicas que permiten personalizar su ejecución:
 - **Fibonacci**
   - Parámetro 1: Fibonacci calcular
     - Descripción: Determina el número del cual se desea conocer el Fibonacci.
@@ -81,38 +87,40 @@ En cuanto a los parámetros específicos a cada uno de los problemas, los mismos
       - El número introducido debe ser un entero positivo con menos de cuatro dígitos.
     - Ejemplo: 13
 
-## Estructura del enunciado
-El usuario puede activar el enunciado presionando el botón "Enunciado" en la sección inferior de la configuración. Al presionarlo, se abrirá una ventana modal en el centro de la pantalla que permite al usuario interactuar con ella.
+## Estructura del Enunciado
+El botón "Enunciado" permite acceder a una descripción detallada del problema. Al hacer clic, se abre una ventana modal que sigue esta estructura:
 
-La estructura del enunciado es la misma para todos los problemas y sigue el siguiente formato:
-- **Introducción al problema:** Se detallan los objetivos y parámetros proporcionados. En el caso del problema "Unique Paths", se incluye una visualización gráfica.
-- **Ejemplos:** Se muestra la salida generada al ingresar cierta entrada, junto con una explicación del motivo detrás de esa salida.
-- **Restricciones:** Se detallan las restricciones del problema y de los inputs.
-- **Follow-up:** Se presentan desafíos adicionales propuestos para el usuario.
+- **Introducción al problema:** Objetivo y parámetros específicos.
+- **Ejemplos:** Entradas y salidas con explicaciones.
+- **Restricciones:** Detalles sobre los límites de los valores permitidos.
+- **Follow-up:** Retos adicionales relacionados con el problema.
 
-## Estructura de la explicación
-El usuario puede activar la explicación presionando el botón "Explicación" en la sección inferior de la configuración. Al hacerlo, se abrirá una ventana modal en el centro de la pantalla que permite al usuario interactuar con ella.
-La estructura de la explicación es la misma para todos los problemas y sigue el siguiente formato:
-- **Página uno - Solución sin programación dinámica**
-  - Imagen del código en Python que representa la solución al problema sin utilizar programación dinámica.
+## Estructura de la Explicación
+El botón "Explicación" proporciona un análisis completo del problema en dos partes:
+
+### Página 1: Solución sin Programación Dinámica
+
+  - Código en Python.
   - Explicación detallada del código.
-  - Identificación del problema presente en la solución debido a la falta de programación dinámica.
-  - Gráfico de llamadas generado a partir de cierta entrada (input).
-- **Página dos- Solución con programación dinámica**
-  - Imagen del código en Python que representa la solución al problema utilizando programación dinámica.
+  - Análisis detallado de sus limitaciones debido a la falta de programación dinámica.
+  - Representación gráfica de las llamadas recursivas para un caso específico.
+
+### Página 2: Solución con Programación Dinámica
+
+  - Código en Python.
   - Explicación detallada del código.
-  - Descripción de cómo se resuelve el problema que existía en la solución previa mediante la introducción de programación dinámica.
-  - Gráfico de llamadas generado para el mismo ejemplo utilizado en la página anterior, pero esta vez utilizando programación dinámica. Esto se realiza para resaltar las ventajas que ofrece la programación dinámica.
+  - Explicación de cómo se resuelven las limitaciones de la solución básica.
+  - Gráfico comparativo que resalta la eficiencia de la solución optimizada.
 
 ## Estructura de la tabla
-La tabla se activa junto con la ejecución y se utiliza para mostrar toda la información relacionada con todas las llamadas realizadas a la función. Gráficamente, se encuentra ubicada debajo del código.
+Durante la ejecución, se genera una tabla que registra información clave sobre las llamadas recursivas. Está ubicada debajo del código y contiene las siguientes columnas:
 
-La tabla consta de cuatro columnas en total, que son las siguientes:
-- **Counter:** Un valor incremental secuencial que identifica cada llamada. Este contador es útil para obtener información sobre cuántas veces se ha llamado a la función hasta llegar a una solución.
-- **Tree Depth:** Representa la profundidad de la llamada en el árbol de llamadas. La profundidad de una llamada se determina sumándole uno a la profundidad de la llamada que llamó a la función, en donde la primera llamada a la función tiene una profundidad igual a cero.
-- **Parameters:** Link clickeable que abre una ventana modal en el centro de la pantalla, donde se muestran los valores de cada uno de los parámetros que recibió la llamada. En el contexto de la programación dinámica, el único parámetro que se excluye es el "memo", ya que es dinámico y común a todas las llamadas.
-Output: Representa el resultado de una llamada cuando esta finaliza su ejecución. Mientras la llamada no haya finalizado, el valor de este campo es “Wating..”.
- 
-A excepción de la columna "Parameters", todos los campos se pueden ordenar tanto de manera ascendente como descendente, lo que es muy útil para realizar análisis estadísticos y también para seguir las llamadas en relación con el árbol de llamadas.
+- **Counter:** Identifica cada llamada con un número secuencial.
+- **Tree Depth:** Indica la profundidad de la llamada en el árbol recursivo.
+- **Parameters:** Link que abre una ventana modal mostrando los valores recibidos por la llamada (excluyendo el parámetro memo).
+- **Output:** Resultado de la llamada, o "Waiting.." si la ejecución aún no ha finalizado.
 
-Al finalizar la ejecución del algoritmo, la fila con un Counter igual a uno, que representa la primera llamada realizada, se resalta en amarillo para indicar que la ejecución ha finalizado y se ha obtenido el resultado (Output) final.
+### Funcionalidades de la Tabla
+
+- Ordenamiento ascendente y descendente en todas las columnas (excepto "Parameters").
+- Resaltado en amarillo de la primera llamada al finalizar la ejecución, indicando el resultado final.
